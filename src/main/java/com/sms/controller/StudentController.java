@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.sms.model.Student;
 import com.sms.service.StudentService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 public class StudentController {
 	
 	@Autowired
@@ -36,7 +38,7 @@ public class StudentController {
 		studentService.addStudent(student);
 	}
 	
-	@PutMapping("/students")
+	@PutMapping("/students/edit/{id}")
 	public void updateStudent(@RequestBody Student student) {
 		studentService.updateStudent(student);
 	}
