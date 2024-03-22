@@ -21,29 +21,29 @@ import com.sms.service.CourseService;
 public class CourseController {
 	
 	@Autowired
-	private CourseService courseService;
+	private CourseService courseService; // Autowired courseService object
 	
-	@GetMapping("/courses")
+	@GetMapping("/courses") // Retrieve all courses
 	public List<Course> getAllCourses(){
 		return courseService.getAllCourse();
 	}
 	
-	@GetMapping("/courses/{id}")
+	@GetMapping("/courses/{id}") // Retrieve a single course by ID
 	public Optional<Course> getCourse(@PathVariable String id) {
 		return courseService.getCourse(id);
 	}
 	
-	@PostMapping("/courses")
+	@PostMapping("/courses") // Create a new course
 	public void addCourse(@RequestBody Course course) {
 		courseService.addCourse(course);
 	}
 	
-	@PutMapping("/courses")
+	@PutMapping("/courses/edit/{id}") // Update an existing course
 	public void updateCourse(@RequestBody Course course) {
 		courseService.updateCourse(course);
 	}
 	
-	@DeleteMapping("/courses/{id}")
+	@DeleteMapping("/courses/{id}") // Delete a course by ID
 	public void deleteCourse(@PathVariable String id) {
 		courseService.deleteCourse(id);
 	}

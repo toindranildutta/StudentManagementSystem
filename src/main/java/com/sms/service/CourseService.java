@@ -13,25 +13,29 @@ import com.sms.repository.CourseRespository;
 public class CourseService {
 	
 	@Autowired
-	private CourseRespository courseRepository;
+	private CourseRespository courseRepository; // Autowired courseRepository object
 	
-	
+	// Retrieve all courses
 	public List<Course> getAllCourse() {
 		return courseRepository.findAll();
 	}
 	
+	// Retrieve a course by ID
 	public Optional<Course> getCourse(String id) {
 		return courseRepository.findById(id);
 	}
 	
+	// Add a new course
 	public void addCourse(Course course) {
 		courseRepository.save(course);
 	}
 	
+	// Update an existing course
 	public void updateCourse(Course course) {
 		courseRepository.save(course);
 	}
 	
+	// Delete a course by ID
 	public void deleteCourse(String id) {
 		courseRepository.deleteById(id);
 	}

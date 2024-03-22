@@ -20,37 +20,44 @@ import com.sms.service.EnrollmentService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
-public class EnrollmentController {
-	
-	@Autowired
-	private EnrollmentService enrollmentService;
-	
-	@GetMapping("/enrollments")
-	public List<Enrollment> getAllEnrollment(){
-		return enrollmentService.getAllEnrollment();
-	}
-	
-	@GetMapping("/enrollment/{id}")
-	public Optional<Enrollment> getEnrollment(@PathVariable String id) {
-		return enrollmentService.getEnrollment(id);
-	}
-	
-	@PostMapping("/enrollment/{studentid}/{courseid}")
-	public void addEnrollment(@RequestBody Enrollment enrollment, @PathVariable String studentid, @PathVariable String courseid) {
-		enrollment.setStudent(new Student(studentid, "", "", "", ""));
-		enrollment.setCourse(new Course(courseid, "", ""));
-		enrollmentService.addEnrollment(enrollment);
-	}
-	
-	@PutMapping("/enrollment/{studentid}/{courseid}")
-	public void updateEnrollment(@RequestBody Enrollment enrollment, @PathVariable String studentid, @PathVariable String courseid) {
-		enrollment.setStudent(new Student(studentid, "", "", "", ""));
-		enrollment.setCourse(new Course(courseid, "", ""));
-		enrollmentService.updateEnrollment(enrollment);
-	}
-	
-	@DeleteMapping("/enrollment/{id}")
-	public void deleteEnrollment(@PathVariable String id) {
-		enrollmentService.deleteEnrollment(id);
-	}
+public class EnrollmentController {					
+    
+    @Autowired
+    private EnrollmentService enrollmentService; // Autowired enrollmentService object
+    
+    // Retrieve all enrollments
+    @GetMapping("/enrollments")
+    public List<Enrollment> getAllEnrollment(){
+        return enrollmentService.getAllEnrollment();
+    }
+    
+    // Retrieve a single enrollment by ID
+    @GetMapping("/enrollments/{id}")
+    public Optional<Enrollment> getEnrollment(@PathVariable String id) {
+        return enrollmentService.getEnrollment(id);
+    }
+    
+    // Add a new enrollment for a student in a course
+    @PostMapping("/enrollment/{studentid}/{courseid}")
+    public void addEnrollment(@RequestBody Enrollment enrollment, @PathVariable String studentid, @PathVariable String courseid) {
+        // Set student and course for the enrollment
+        enrollment.setStudent(new Student(studentid, "", "", "", ""));
+        enrollment.setCourse(new Course(courseid, "", ""));
+        enrollmentService.addEnrollment(enrollment);
+    }
+    
+    // Update an existing enrollment
+    @PutMapping("/enrollment/edit/{studentid}/{courseid}")
+    public void updateEnrollment(@RequestBody Enrollment enrollment, @PathVariable String studentid, @PathVariable String courseid) {
+        // Set student and course for the enrollment
+        enrollment.setStudent(new Student(studentid, "", "", "", ""));
+        enrollment.setCourse(new Course(courseid, "", ""));
+        enrollmentService.updateEnrollment(enrollment);
+    }
+    
+    // Delete an enrollment by ID
+    @DeleteMapping("/enrollment/{id}")
+    public void deleteEnrollment(@PathVariable String id) {
+        enrollmentService.deleteEnrollment(id);
+    }
 }

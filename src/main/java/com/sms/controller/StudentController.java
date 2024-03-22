@@ -21,28 +21,33 @@ import com.sms.service.StudentService;
 public class StudentController {
 	
 	@Autowired
-	private StudentService studentService;
+	private StudentService studentService; // Autowired studentService object
 	
+	// Retrieve all students
 	@GetMapping("/students")
 	public List<Student> getAllStudents(){
 		return studentService.getAllStudents();
 	}
 	
+	// Retrieve a single student by ID
 	@GetMapping("/students/{id}")
 	public Optional<Student> getStudent(@PathVariable String id) {
 		return studentService.getStudent(id);
 	}
 	
+	// Add a new student
 	@PostMapping("/students")
 	public void addStudent(@RequestBody Student student) {
 		studentService.addStudent(student);
 	}
 	
+	// Update an existing student
 	@PutMapping("/students/edit/{id}")
 	public void updateStudent(@RequestBody Student student) {
 		studentService.updateStudent(student);
 	}
 	
+	// Delete a student by ID
 	@DeleteMapping("/students/{id}")
 	public void deleteStudent(@PathVariable String id) {
 		studentService.deleteStudent(id);

@@ -13,25 +13,29 @@ import com.sms.repository.EnrollmentRespository;
 public class EnrollmentService {
 	
 	@Autowired
-	private EnrollmentRespository enrollmentRepository;
+	private EnrollmentRespository enrollmentRepository; // Autowired enrollmentRepository object
 	
-	
+	// Retrieve all enrollments
 	public List<Enrollment> getAllEnrollment() {
 		return enrollmentRepository.findAll();
 	}
 	
+	// Retrieve an enrollment by ID
 	public Optional<Enrollment> getEnrollment(String id) {
 		return enrollmentRepository.findById(id);
 	}
 	
+	// Add a new enrollment
 	public void addEnrollment(Enrollment enrollment) {
 		enrollmentRepository.save(enrollment);
 	}
 	
+	// Update an existing enrollment
 	public void updateEnrollment(Enrollment enrollment) {
 		enrollmentRepository.save(enrollment);
 	}
 	
+	// Delete an enrollment by ID
 	public void deleteEnrollment(String id) {
 		enrollmentRepository.deleteById(id);
 	}

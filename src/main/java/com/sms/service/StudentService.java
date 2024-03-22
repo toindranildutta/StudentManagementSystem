@@ -13,25 +13,29 @@ import com.sms.repository.StudentRespository;
 public class StudentService {
 	
 	@Autowired
-	private StudentRespository studentRepository;
+	private StudentRespository studentRepository; // Autowired studentRepository object
 	
-	
+	// Retrieve all students
 	public List<Student> getAllStudents() {
 		return studentRepository.findAll();
 	}
 	
+	// Retrieve a student by ID
 	public Optional<Student> getStudent(String id) {
 		return studentRepository.findById(id);
 	}
 	
+	// Add a new student
 	public void addStudent(Student student) {
 		studentRepository.save(student);
 	}
 	
+	// Update an existing student
 	public void updateStudent(Student student) {
 		studentRepository.save(student);
 	}
 	
+	// Delete a student by ID
 	public void deleteStudent(String id) {
 		studentRepository.deleteById(id);
 	}
